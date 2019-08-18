@@ -12,7 +12,7 @@ const spotify = new Spotify(keys.spotify);
 const argv = process.argv;
 let arg1 = argv[2];
 let arg2 = argv[3];
-console.log(arg2);
+
 //in case the title is seperated by spaces taking them from the array and storing as a string to pass to spotify or OMDB
 if (argv.length > 4) {
     const argArray = [];
@@ -21,10 +21,7 @@ if (argv.length > 4) {
     }
     arg2 = argArray.join(" ");
 }
-// commands to use 
-// spotify-this-song
-// movie-this
-// do-what-it-says
+
 
 //spotify-This-song
 function spotifySearch() {
@@ -138,12 +135,18 @@ function doWhatItSays() {
 //basic statements that starts things
 if (arg1 === "do-what-it-says") {
     doWhatItSays();
-}
-
-if (arg1 === "spotify-this") {
+} else if (arg1 === "spotify-this") {
     spotifySearch();
-}
-
-if (arg1 === "movie-this") {
+} else if (arg1 === "movie-this") {
     OMDBSearch();
+} else {
+    //if no proper command was entered give info on how to use
+    console.log(`
+Not a proper command to use LIRI enter:
+
+spotify-this "song title" 
+or
+movie-this "movie title"
+or
+do-what-it-says`)
 }
